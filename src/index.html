@@ -58,7 +58,7 @@
 
 <div class="movies"></div>
 
-<template id="movies-template">
+<template id="movie-template">
   <div class="movie">
     <img src="" alt="">
 
@@ -76,9 +76,7 @@
 <script>
   async function initialize() {
     const movies= await fetch('/.netlify/functions/movies')
-      .then((response) => response.JSON());
-
-      console.log(movies);
+      .then((response) => response.json());
 
     const container = document.querySelector('.movies');
     const template = document.querySelector('#movie-template');
@@ -93,12 +91,10 @@
       element.querySelector('h2').innerText = movie.title;
       element.querySelector('.tagline').innerText = movie.tagline;
 
-      addScores(element, movie.scores);
-
       container.appendChild(element);
   });
-
-  initialize();
 }
+   
+initialize();
 
 </script>
